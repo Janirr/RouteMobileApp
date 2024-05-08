@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TrailsList</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="detail_button">Show trail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="trail_title">Trail title</string>
+    <string name="trail_description">Trail description</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="reset">Reset</string>
+    <string name="action_activity_title">Przeznaczenie aplikacji</string>
+    <string name="title_top">Fragment główny</string>
+    <string name="app_purpose">RouteApp jest przeznaczone do pomocy użytkownikom w planowaniu i nawigowaniu trasami.</string>
+    <string name="selfie">Zrób selfie</string>
+</resources>
