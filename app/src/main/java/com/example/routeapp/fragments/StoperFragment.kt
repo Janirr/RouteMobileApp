@@ -2,6 +2,7 @@ package com.example.routeapp.fragments
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,7 +75,7 @@ class StoperFragment : Fragment(), View.OnClickListener {
 
     fun runStoper(view: View) {
         val timeView = view.findViewById<View>(R.id.time_view) as TextView
-        val handler = Handler()
+        val handler = Handler(Looper.getMainLooper())
         handler.post(object : Runnable {
             override fun run() {
                 val hours = seconds / 3600
