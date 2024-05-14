@@ -42,30 +42,23 @@ class TrailDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_trail_detail, container, false)
     }
 
-
     override fun onStart() {
         super.onStart()
         val view: View? = view
         if (view != null) {
-//            val title: TextView = view.findViewById(R.id.textTitle)
             val description: TextView = view.findViewById(R.id.textDescription)
-
             val trail = if (trailType == DetailActivity.TYPE_HARD) {
                 Trail.hardTrails[trailId]
             } else {
                 Trail.easyTrails[trailId]
             }
-
-//            title.text = trail.getName()
             description.text = trail.getDescription()
         }
     }
 
-
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        savedInstanceState.putLong("trailId", trailId.toLong());
+        savedInstanceState.putLong("trailId", trailId.toLong())
     }
-
 
     fun setTrailId(trailId: Int) {
         this.trailId = trailId

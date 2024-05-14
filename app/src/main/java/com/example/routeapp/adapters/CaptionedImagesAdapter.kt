@@ -35,13 +35,10 @@ class CaptionedImagesAdapter(private var captions: Array<String?>, private var i
         val cardView = holder.itemView as CardView
         val imageView = holder.imageView
         val textView = holder.textView
-
         val drawable = ContextCompat.getDrawable(cardView.context, imageIds[position] ?: R.drawable.image) // Safely handle null with a default image.
         imageView.setImageDrawable(drawable)
         imageView.contentDescription = captions[position]
-
         textView.text = captions[position]
-
         cardView.setOnClickListener {
             listener?.onClick(position)
         }

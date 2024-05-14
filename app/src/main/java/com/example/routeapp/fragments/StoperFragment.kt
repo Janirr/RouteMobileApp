@@ -29,7 +29,6 @@ class StoperFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_stoper, container, false)
         runStoper(layout)
         val startButton: Button = layout.findViewById<View>(R.id.start_button) as Button

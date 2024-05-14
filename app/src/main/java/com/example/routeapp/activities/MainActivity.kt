@@ -20,15 +20,11 @@ class MainActivity : AppCompatActivity(), Listener {
         setContentView(R.layout.activity_main)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
-
         val viewPager: ViewPager2 = findViewById(R.id.pager)
         val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = sectionsPagerAdapter
-
         val tabLayout: TabLayout = findViewById(R.id.tabs)
-
         val tabTitles = listOf("Łatwe szlaki", "Trudne szlaki") // Lista tekstów dla zakładek
-
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text =
                 tabTitles[position] // Ustawiamy tekst zakładki na podstawie pozycji w liście tabTitles
@@ -37,7 +33,6 @@ class MainActivity : AppCompatActivity(), Listener {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -48,7 +43,6 @@ class MainActivity : AppCompatActivity(), Listener {
                 startActivity(intent)
                 true
             }
-
             else -> super.onOptionsItemSelected(item)
         }
     }

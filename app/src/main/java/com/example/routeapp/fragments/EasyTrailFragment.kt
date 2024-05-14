@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.ListFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routeapp.R
@@ -33,14 +31,12 @@ class EasyTrailFragment : Fragment() {
         }
         val images = arrayOfNulls<Int>(Trail.easyTrails.size)
         for (i in names.indices) {
-            images[i] = Trail.easyTrails[i].getResourceId();
+            images[i] = Trail.easyTrails[i].getResourceId()
         }
         val adapter = CaptionedImagesAdapter(names, images)
         recyclerView.setAdapter(adapter)
-
         val layoutManager = GridLayoutManager(activity, 2)
         recyclerView.layoutManager = layoutManager
-
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
                 val intent = Intent(activity, DetailActivity::class.java)

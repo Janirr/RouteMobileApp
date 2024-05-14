@@ -24,21 +24,18 @@ class HardTrailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val recyclerView = inflater.inflate(R.layout.fragment_tab2, container, false) as RecyclerView
-
         val names = arrayOfNulls<String>(Trail.hardTrails.size)
         for (i in names.indices) {
             names[i] = Trail.hardTrails[i].getName()
         }
         val images = arrayOfNulls<Int>(Trail.hardTrails.size)
         for (i in names.indices) {
-            images[i] = Trail.hardTrails[i].getResourceId();
+            images[i] = Trail.hardTrails[i].getResourceId()
         }
         val adapter = CaptionedImagesAdapter(names, images)
         recyclerView.setAdapter(adapter)
-
         val layoutManager = GridLayoutManager(activity, 2)
         recyclerView.layoutManager = layoutManager
-
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
                 val intent = Intent(activity, DetailActivity::class.java)
