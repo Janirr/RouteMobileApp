@@ -13,4 +13,5 @@
     <string name="title_top">Fragment główny</string>
     <string name="app_purpose">RouteApp jest przeznaczone do pomocy użytkownikom w planowaniu i nawigowaniu trasami.</string>
     <string name="selfie">Zrób selfie</string>
+    <string name="trail_image">Trail Image</string>
 </resources>
