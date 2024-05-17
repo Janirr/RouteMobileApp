@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_action"
+        android:src="@drawable/background_action2"
         android:contentDescription="@string/background_image_description"/>
 
     <LinearLayout
@@ -28,7 +28,7 @@
             android:layout_marginTop="16dp"
             android:textSize="30sp"
             android:textAlignment="center"
-            android:textColor="@android:color/black"/>
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 </FrameLayout>

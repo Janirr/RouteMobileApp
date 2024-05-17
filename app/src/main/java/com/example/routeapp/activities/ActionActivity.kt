@@ -20,7 +20,7 @@ class ActionActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val imageView: ImageView = findViewById(R.id.background_image)
-        imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.background_action))
+        imageView.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.background_action2))
 
         // Load and apply fade-in and zoom-in animations
         val fadeInAnimation = AnimatorInflater.loadAnimator(this, R.animator.fade_in) as ObjectAnimator
