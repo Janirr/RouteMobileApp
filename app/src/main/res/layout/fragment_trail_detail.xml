@@ -15,24 +15,31 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
-            <ImageView
-                android:id="@+id/trail_image"
+            <FrameLayout
+                android:id="@+id/trail_image_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
-                app:layout_collapseMode="parallax"
-                android:contentDescription="@string/trail_image" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/trail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/trail_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_launcher_background"
+                    app:layout_collapseMode="parallax" />
+            </FrameLayout>
+
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent"
-                app:layout_collapseMode="pin"/>
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -45,15 +52,15 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"/>
+                android:padding="16dp" />
 
             <FrameLayout
                 android:id="@+id/stoper_container"
@@ -70,6 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:src="@drawable/photo_camera_24dp"
-        android:contentDescription="@string/selfie" />
+        android:contentDescription="@string/selfie"
+        android:src="@drawable/photo_camera_24dp" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

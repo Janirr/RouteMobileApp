@@ -23,7 +23,8 @@ class HardTrailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val recyclerView = inflater.inflate(R.layout.fragment_tab2, container, false) as RecyclerView
+        val recyclerView =
+            inflater.inflate(R.layout.fragment_tab2, container, false) as RecyclerView
         val names = arrayOfNulls<String>(Trail.hardTrails.size)
         for (i in names.indices) {
             names[i] = Trail.hardTrails[i].getName()
@@ -38,10 +39,20 @@ class HardTrailFragment : Fragment() {
         recyclerView.layoutManager = layoutManager
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
-                val intent = Intent(activity, DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, position)
-                intent.putExtra(DetailActivity.EXTRA_TRAIL_TYPE, DetailActivity.TYPE_HARD)
-                activity?.startActivity(intent)
+                val trailType = DetailActivity.TYPE_HARD
+
+                if (activity?.findViewById<View>(R.id.detail_fragment_container) != null) {
+                    val trailDetailFragment = TrailDetailFragment()
+                    trailDetailFragment.setTrailDetails(position, trailType)
+                    activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.detail_fragment_container, trailDetailFragment)
+                        ?.commit()
+                } else {
+                    val intent = Intent(activity, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, position)
+                    intent.putExtra(DetailActivity.EXTRA_TRAIL_TYPE, DetailActivity.TYPE_HARD)
+                    activity?.startActivity(intent)
+                }
             }
         })
 

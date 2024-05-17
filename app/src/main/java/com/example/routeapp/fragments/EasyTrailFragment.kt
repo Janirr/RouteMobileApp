@@ -23,7 +23,8 @@ class EasyTrailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val recyclerView = inflater.inflate(R.layout.fragment_tab1, container, false) as RecyclerView
+        val recyclerView =
+            inflater.inflate(R.layout.fragment_tab1, container, false) as RecyclerView
 
         val names = arrayOfNulls<String>(Trail.easyTrails.size)
         for (i in names.indices) {
@@ -37,15 +38,25 @@ class EasyTrailFragment : Fragment() {
         recyclerView.setAdapter(adapter)
         val layoutManager = GridLayoutManager(activity, 2)
         recyclerView.layoutManager = layoutManager
+
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
-                val intent = Intent(activity, DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, position)
-                intent.putExtra(DetailActivity.EXTRA_TRAIL_TYPE, DetailActivity.TYPE_EASY)
-                activity?.startActivity(intent)
+                val trailType = DetailActivity.TYPE_EASY
+
+                if (activity?.findViewById<View>(R.id.detail_fragment_container) != null) {
+                    val trailDetailFragment = TrailDetailFragment()
+                    trailDetailFragment.setTrailDetails(position, trailType)
+                    activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.detail_fragment_container, trailDetailFragment)
+                        ?.commit()
+                } else {
+                    val intent = Intent(activity, DetailActivity::class.java)
+                    intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, position)
+                    intent.putExtra(DetailActivity.EXTRA_TRAIL_TYPE, trailType)
+                    activity?.startActivity(intent)
+                }
             }
         })
-
         return recyclerView
     }
 
@@ -53,5 +64,4 @@ class EasyTrailFragment : Fragment() {
         super.onAttach(context)
         this.listener = context as Listener
     }
-
 }

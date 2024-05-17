@@ -26,8 +26,7 @@ class MainActivity : AppCompatActivity(), Listener {
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         val tabTitles = listOf("Łatwe szlaki", "Trudne szlaki") // Lista tekstów dla zakładek
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text =
-                tabTitles[position] // Ustawiamy tekst zakładki na podstawie pozycji w liście tabTitles
+            tab.text = tabTitles[position]
         }.attach()
     }
 

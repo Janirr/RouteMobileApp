@@ -7,7 +7,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +15,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.example.routeapp.R
 import com.example.routeapp.fragments.TrailDetailFragment
-import com.example.routeapp.models.Trail
-import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 
 class DetailActivity : AppCompatActivity() {
@@ -37,22 +35,11 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         val trailId = intent.getIntExtra(EXTRA_TRAIL_ID, 0)
         val trailType = intent.getStringExtra(EXTRA_TRAIL_TYPE)
-        val trail = if (trailType == TYPE_HARD) {
-            Trail.hardTrails[trailId]
-        } else {
-            Trail.easyTrails[trailId]
-        }
-        val collapsingToolbar = findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
-        collapsingToolbar.title = trail.getName()
-        val trailImage: Int = trail.getResourceId()
-        val imageView = findViewById<ImageView>(R.id.trail_image)
-        imageView.setImageDrawable(ContextCompat.getDrawable(this, trailImage))
         val fragment: TrailDetailFragment =
             supportFragmentManager.findFragmentById(R.id.detail_frag) as TrailDetailFragment
         if (trailType != null) {
             fragment.setTrailDetails(trailId, trailType)
         }
-
         val fab: FloatingActionButton = findViewById(R.id.fab_camera)
         fab.setOnClickListener {
             handleCameraAction()
@@ -63,7 +50,11 @@ class DetailActivity : AppCompatActivity() {
         val photoFile: File? = try {
             createImageFile()
         } catch (ex: Exception) {
-            Toast.makeText(this, "Photo file can't be created, please try again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Photo file can't be created, please try again",
+                Toast.LENGTH_SHORT
+            ).show()
             null
         }
         photoFile?.also {
@@ -79,7 +70,8 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun createImageFile(): File {
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val timeStamp: String =
+            SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
         return File.createTempFile(
             "JPEG_${timeStamp}_",
@@ -104,7 +96,11 @@ class DetailActivity : AppCompatActivity() {
         if (isGranted) {
             openCamera()
         } else {
-            Toast.makeText(this, "Camera permission is required to use the camera", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Camera permission is required to use the camera",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -115,6 +111,7 @@ class DetailActivity : AppCompatActivity() {
             ) == PackageManager.PERMISSION_GRANTED -> {
                 openCamera()
             }
+
             else -> {
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA)
             }

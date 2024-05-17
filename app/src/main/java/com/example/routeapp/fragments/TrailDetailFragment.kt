@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.routeapp.R
 import com.example.routeapp.activities.DetailActivity
 import com.example.routeapp.models.Trail
-
+import com.google.android.material.appbar.CollapsingToolbarLayout
 
 class TrailDetailFragment : Fragment() {
     private var trailId: Int = 0
@@ -23,6 +25,7 @@ class TrailDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Manage the stoper fragment here if needed
         if (savedInstanceState == null) {
             val stoper = StoperFragment()
             val ft: FragmentTransaction = childFragmentManager.beginTransaction()
@@ -32,6 +35,7 @@ class TrailDetailFragment : Fragment() {
             ft.commit()
         } else {
             trailId = savedInstanceState.getInt("trailId")
+            trailType = savedInstanceState.getString("trailType")
         }
     }
 
@@ -44,24 +48,34 @@ class TrailDetailFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val view: View? = view
-        if (view != null) {
+        view?.let { view ->
+            val trailImageView = view.findViewById<ImageView>(R.id.trail_image)
             val description: TextView = view.findViewById(R.id.textDescription)
+            val collapsingToolbar =
+                view.findViewById<CollapsingToolbarLayout>(R.id.collapsing_toolbar)
             val trail = if (trailType == DetailActivity.TYPE_HARD) {
                 Trail.hardTrails[trailId]
             } else {
                 Trail.easyTrails[trailId]
             }
+
+            collapsingToolbar.title = trail.getName()
+            context?.let { context ->
+                trailImageView.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        trail.getResourceId()
+                    )
+                )
+            }
+
             description.text = trail.getDescription()
         }
     }
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
-        savedInstanceState.putLong("trailId", trailId.toLong())
-    }
-
-    fun setTrailId(trailId: Int) {
-        this.trailId = trailId
+        savedInstanceState.putInt("trailId", trailId)
+        savedInstanceState.putString("trailType", trailType)
     }
 
     override fun onDestroy() {
