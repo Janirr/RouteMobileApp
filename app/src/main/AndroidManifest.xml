@@ -35,9 +35,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-        <activity
-            android:name=".activities.TempActivity"
-            android:exported="false" />
+        <!--        <activity-->
+        <!--            android:name=".activities.TempActivity"-->
+        <!--            android:exported="false" />-->
         <activity
             android:name=".activities.DetailActivity"
             android:exported="false"

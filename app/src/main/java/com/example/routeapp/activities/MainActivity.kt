@@ -7,9 +7,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.viewpager2.widget.ViewPager2
-import com.example.routeapp.util.Listener
 import com.example.routeapp.R
 import com.example.routeapp.adapters.SectionsPagerAdapter
+import com.example.routeapp.util.Listener
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), Listener {
         val sectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, lifecycle)
         viewPager.adapter = sectionsPagerAdapter
         val tabLayout: TabLayout = findViewById(R.id.tabs)
-        val tabTitles = listOf("Łatwe szlaki", "Trudne szlaki") // Lista tekstów dla zakładek
+        val tabTitles = listOf("Łatwe szlaki", "Trudne szlaki")
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity(), Listener {
                 startActivity(intent)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
