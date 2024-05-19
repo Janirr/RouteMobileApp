@@ -10,7 +10,10 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.routeapp.R
 
-class CaptionedImagesAdapter(private var captions: Array<String?>, private var imageIds: Array<Int?>) : RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder>() {
+class CaptionedImagesAdapter(
+    private var captions: Array<String?>,
+    private var imageIds: Array<Int?>
+) : RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder>() {
     private var listener: Listener? = null
 
     interface Listener {
@@ -23,7 +26,8 @@ class CaptionedImagesAdapter(private var captions: Array<String?>, private var i
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val cv = LayoutInflater.from(parent.context).inflate(R.layout.card_captioned_image, parent, false) as CardView
+        val cv = LayoutInflater.from(parent.context)
+            .inflate(R.layout.card_captioned_image, parent, false) as CardView
         return ViewHolder(cv)
     }
 
@@ -35,7 +39,8 @@ class CaptionedImagesAdapter(private var captions: Array<String?>, private var i
         val cardView = holder.itemView as CardView
         val imageView = holder.imageView
         val textView = holder.textView
-        val drawable = ContextCompat.getDrawable(cardView.context, imageIds[position] ?: R.drawable.image) // Safely handle null with a default image.
+        val drawable =
+            ContextCompat.getDrawable(cardView.context, imageIds[position] ?: R.drawable.image)
         imageView.setImageDrawable(drawable)
         imageView.contentDescription = captions[position]
         textView.text = captions[position]
