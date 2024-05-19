@@ -25,7 +25,6 @@ class TrailDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Manage the stoper fragment here if needed
         if (savedInstanceState == null) {
             val stoper = StoperFragment()
             val ft: FragmentTransaction = childFragmentManager.beginTransaction()

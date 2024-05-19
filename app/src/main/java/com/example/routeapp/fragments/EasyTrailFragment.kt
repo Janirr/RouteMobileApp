@@ -42,7 +42,6 @@ class EasyTrailFragment : Fragment() {
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
                 val trailType = DetailActivity.TYPE_EASY
-
                 if (activity?.findViewById<View>(R.id.detail_fragment_container) != null) {
                     val trailDetailFragment = TrailDetailFragment()
                     trailDetailFragment.setTrailDetails(position, trailType)
