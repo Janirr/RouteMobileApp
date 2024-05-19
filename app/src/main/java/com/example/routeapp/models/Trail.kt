@@ -63,12 +63,7 @@ class Trail(
             Trail(
                 "Ścieżka Wysokogórska",
                 "Ten wymagający szlak jest przeznaczony dla doświadczonych turystów. Prowadzi przez strome zbocza i skaliste grzbiety, oferując zapierające dech w piersiach widoki na okoliczne szczyty. Szlak wymaga dobrej kondycji fizycznej i odpowiedniego wyposażenia. Długość trasy to około 10 km z dużymi przewyższeniami.",
-                R.drawable.droga_pod_reglami
-            ),
-            Trail(
-                "Droga pod Reglami TRUDNA",
-                "Skorzystaj z tego 8,0-km szlak w formie pętli w pobliżu Zakopane, Małopolskie. Trasa uznawana za wymagający, jej pokonanie zajmuje średnio 3 godz. 10 min.. Bardzo popularny obszar dla turystyka piesza, więc podczas zwiedzania prawdopodobnie spotkasz innych ludzi. Szlak jest otwarty przez cały rok i jest atrakcyjny o każdej porze roku. Psy nie mają wstępu na ten szlak — zostaw swojego pupila w domu.",
-                R.drawable.droga_pod_reglami
+                R.drawable.hard
             )
         )
     }
